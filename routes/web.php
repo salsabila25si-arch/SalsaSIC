@@ -29,3 +29,7 @@ Route::get('/about', function () {
 });
 
 Route::get('/mahasiswa/{param1}' , [MahasiswaController::class, 'show']);
+
+use App\Http\Controllers\HomeController; 
+
+Route::get('/home', [HomeController::class, 'index']);
