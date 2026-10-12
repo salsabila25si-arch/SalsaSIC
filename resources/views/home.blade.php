@@ -82,13 +82,12 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
-            
-        
+            <h1>Welcome to My Application</h1>
         </div>
     </section>
 
     <!-- Content Section -->
-    <section id="content" class="container ">
+    <section id="content" class="container">
         <div class="row">
             <div class="col-md-6">
                 {{-- About --}}
@@ -153,8 +152,42 @@
             </div>
 
             <div class="col-md-6">
+                <!-- Form Pertanyaan -->
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Form Pertanyaan</h5>
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <form action="{{ route('question.store') }}" method="POST">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="nama" class="form-label">Nama</label>
+                                <input type="text" class="form-control" id="nama" name="nama" value="{{ old('nama') }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
+                            </div>
+                            <div class="mb-3">
+                                <label for="pertanyaan" class="form-label">Pertanyaan</label>
+                                <textarea class="form-control" id="pertanyaan" name="pertanyaan" rows="4">{{ old('pertanyaan') }}</textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Kirim Pertanyaan</button>
+                        </form>
+                    </div>
+                </div>
+
                 {{-- Alerts --}}
-                <div class="card ">
+                <div class="card mb-4">
                     <div class="card-body">
                         <h3 class="h5 mb-3">Alerts</h3>
                         <div class="alert alert-primary mb-2">Informational alert</div>
@@ -165,7 +198,7 @@
                 </div>
 
                 {{-- Buttons --}}
-                <div class="card">
+                <div class="card mb-4">
                     <div class="card-body">
                         <h3 class="h5 mb-3">Buttons</h3>
                         <div class="d-flex flex-wrap gap-2">
@@ -224,7 +257,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; {{date('Y')}} My Laravel App. All Rights Reserved.</p>
+            <p>&copy; {{ date('Y') }} My Laravel App. All Rights Reserved.</p>
         </div>
     </footer>
 
