@@ -12,7 +12,8 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        //
+        $data['dataPelanggan'] = Pelanggan::all();
+		return view('admin.pelanggan.index',$data);
     }
 
     /**
@@ -57,7 +58,8 @@ class PelangganController extends Controller
      */
     public function edit(string $id)
     {
-        //
+    $data['dataPelanggan'] = Pelanggan::findOrFail($id);
+    return view('admin.pelanggan.edit', $data);
     }
 
     /**
